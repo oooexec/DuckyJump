@@ -1,13 +1,11 @@
 #include "config.h"
 #include "Arkona/Arkona.h"
-#include "Game.h"
+#include "Engine.h"
 
 int main()
 {
-    Game game;
-    game.run();
-
-    
+    Engine engine;
+    engine.run();
 
     return 0;
 }

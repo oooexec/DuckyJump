@@ -5,8 +5,8 @@
 class Game
 {
     public:
-        Game();
-            virtual ~Game();
+        Game(sf::RenderWindow * new_window_pointer);
+        virtual ~Game();
         void run();
     protected:
     private:
@@ -14,8 +14,11 @@ class Game
         void update(sf::Time time_delta);
         void render();
         sf::Time frame_time;
-        sf::RenderWindow window;
         sf::CircleShape shape;
+        sf::RenderWindow * window_pointer;
+        
+        bool is_game_running;
+        bool is_paused;
 };
 
 #endif // GAME_H
