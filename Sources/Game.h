@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include "Bird.h"
 
 class Game
 {
@@ -16,6 +18,8 @@ class Game
         sf::Time frame_time;
         sf::CircleShape shape;
         sf::RenderWindow * window_pointer;
+        sf::Music bg_music;
+        Bird bird;
         
         bool is_game_running;
         bool is_paused;

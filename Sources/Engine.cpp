@@ -27,5 +27,6 @@ void Engine::run(){
 }
 
 void Engine::switch_game_state(){
-    game_state = (1 + game_state) % 2;
+
+//    game_state = (1 + game_state) % 2;
 }
