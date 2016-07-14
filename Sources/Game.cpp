@@ -4,8 +4,6 @@
 Game::Game(sf::RenderWindow * new_window_pointer)
 {
     window_pointer = new_window_pointer;
-    shape.setRadius(150.f);
-    shape.setFillColor(sf::Color::Green);
     bg_music.openFromFile("./Sounds/bg_music.ogg");
     bg_music.setVolume(33.f);
     bg_music.setLoop(true);
@@ -14,6 +12,8 @@ Game::Game(sf::RenderWindow * new_window_pointer)
     is_paused = false;
     
     frame_time  = sf::seconds(1.f/60.f);
+    horizontal_speed = 1.0f;
+    
     
     this->run();
 }
@@ -37,6 +37,9 @@ void Game::handleEvents(){
             case sf::Keyboard::P:
                 is_paused = true;
                 break;
+            case sf::Keyboard::Space:
+                bird.jump();
+                break;
         }
     }
 }
@@ -58,7 +61,6 @@ void Game::run()
             this->handleEvents();
             this->update(frame_time);
             ( * window_pointer ).clear();
-            ( * window_pointer ).draw(shape);
             ( * window_pointer ).draw(bird.getCurrentFrame());
             ( * window_pointer ).display();
         }
@@ -67,7 +69,6 @@ void Game::run()
 
 void Game::update(sf::Time time_delta){
     if(!is_paused){
-        shape.move(1.0,0.0);
         bird.update();
     }
 }

@@ -9,15 +9,18 @@ public:
     ~Bird();
     void update();
     sf::Sprite getCurrentFrame();
+    void jump();
 protected:
 private:
     bool is_alive;
     sf::Texture spritesheet;
     sf::Sprite sprite;
     float gravity_modifier;
-    float horizontal_speed;
+    float min_gravity_modifier;
+    float max_gravity_modifier;
+    float jump_strength;
     int current_frame = 0;
-    int frame_duration = 8;
+    int frame_duration = 16;
 };
 
 #endif // BIRD_H

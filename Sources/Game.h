@@ -16,9 +16,9 @@ class Game
         void update(sf::Time time_delta);
         void render();
         sf::Time frame_time;
-        sf::CircleShape shape;
         sf::RenderWindow * window_pointer;
         sf::Music bg_music;
+        float horizontal_speed;
         Bird bird;
         
         bool is_game_running;
