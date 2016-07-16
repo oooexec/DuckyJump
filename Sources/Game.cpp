@@ -60,7 +60,7 @@ void Game::run()
             elapsed_time_since_update -= frame_time;
             this->handleEvents();
             this->update(frame_time);
-            ( * window_pointer ).clear();
+            ( * window_pointer ).clear(sf::Color(75,203,208));
             ( * window_pointer ).draw(floor.getSprite());
             ( * window_pointer ).draw(bird.getCurrentFrame());
             ( * window_pointer ).display();
