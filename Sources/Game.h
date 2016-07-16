@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "Bird.h"
+#include "Floor.h"
 
 class Game
 {
@@ -20,6 +21,7 @@ class Game
         sf::Music bg_music;
         float horizontal_speed;
         Bird bird;
+        Floor floor;
         
         bool is_game_running;
         bool is_paused;

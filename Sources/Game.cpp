@@ -61,6 +61,7 @@ void Game::run()
             this->handleEvents();
             this->update(frame_time);
             ( * window_pointer ).clear();
+            ( * window_pointer ).draw(floor.getSprite());
             ( * window_pointer ).draw(bird.getCurrentFrame());
             ( * window_pointer ).display();
         }
@@ -69,6 +70,7 @@ void Game::run()
 
 void Game::update(sf::Time time_delta){
     if(!is_paused){
+        floor.move(horizontal_speed);
         bird.update();
     }
 }
