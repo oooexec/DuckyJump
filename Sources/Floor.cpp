@@ -10,7 +10,7 @@ Floor::Floor(float window_width, float window_height)
     
     sprite.setTexture(texture);
     sprite.setTextureRect(floor_rect);
-    sprite.setPosition(0.f,window_height+30);
+    sprite.setPosition(0.f,window_height-70);
 }
 
 sf::Sprite Floor::getSprite(){
