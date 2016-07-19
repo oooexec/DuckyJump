@@ -10,7 +10,7 @@ Bird::Bird()
     current_frame = 0;
     gravity_modifier = -0.0f;
     max_gravity_modifier = 4.0f;
-    min_gravity_modifier = -4.f;
+    min_gravity_modifier = -1 * max_gravity_modifier;
     jump_strength = 2*max_gravity_modifier;
     frame_duration  = sf::seconds(16.f/60.f);
     time_since_frame_change = sf::Time::Zero;
@@ -34,6 +34,12 @@ void Bird::update(sf::Time time_delta){
     
     if(gravity_modifier < min_gravity_modifier)
         gravity_modifier = min_gravity_modifier;
+        
+    this->updateRotation();
+}
+
+void Bird::updateRotation(){
+    sprite.setRotation(3*gravity_modifier);
 }
 
 sf::Sprite Bird::getCurrentFrame(){

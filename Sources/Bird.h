@@ -8,6 +8,7 @@ public:
     Bird();
     ~Bird();
     void update(sf::Time time_delta);
+    void updateRotation();
     sf::Sprite getCurrentFrame();
     void jump();
 protected:
