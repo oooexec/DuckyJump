@@ -9,9 +9,9 @@ Bird::Bird()
     sprite.setPosition(200-24,300-24);
     current_frame = 0;
     gravity_modifier = -0.0f;
-    min_gravity_modifier = -4.0f;
     max_gravity_modifier = +4.0f;
-    jump_strength = 8.0f;
+    min_gravity_modifier = -min_gravity_modifier;
+    jump_strength = 2*max_gravity_modifier;
 }
 
 void Bird::update(){
