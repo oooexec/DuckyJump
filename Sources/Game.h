@@ -4,6 +4,7 @@
 #include <SFML/Audio.hpp>
 #include "Bird.h"
 #include "Floor.h"
+#include "Pipe.h"
 
 class Game
 {
@@ -22,6 +23,7 @@ class Game
         float horizontal_speed;
         Bird bird;
         Floor floor;
+        Pipe test_pipe;
         
         bool is_game_running;
         bool is_paused;
