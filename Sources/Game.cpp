@@ -32,6 +32,9 @@ void Game::handleEvents(){
 
         switch(event.key.code){
             case sf::Keyboard::Escape:
+                ( * window_pointer ).close();
+                break;
+            case sf::Keyboard::R:
                 is_game_running = false;
                 break;
             case sf::Keyboard::P:
@@ -39,6 +42,8 @@ void Game::handleEvents(){
                 break;
             case sf::Keyboard::Space:
                 bird.jump();
+                break;
+            default:
                 break;
         }
     }
