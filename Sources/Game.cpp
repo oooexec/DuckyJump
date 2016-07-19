@@ -71,6 +71,6 @@ void Game::run()
 void Game::update(sf::Time time_delta){
     if(!is_paused){
         floor.move(horizontal_speed);
-        bird.update();
+        bird.update(time_delta);
     }
 }

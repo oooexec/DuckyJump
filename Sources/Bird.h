@@ -7,7 +7,7 @@ class Bird
 public:
     Bird();
     ~Bird();
-    void update();
+    void update(sf::Time time_delta);
     sf::Sprite getCurrentFrame();
     void jump();
 protected:
@@ -20,7 +20,9 @@ private:
     float max_gravity_modifier;
     float jump_strength;
     int current_frame = 0;
-    int frame_duration = 16;
+    sf::Time frame_duration;
+    sf::Time time_since_frame_change;
+    int frame_amount = 3;
 };
 
 #endif // BIRD_H

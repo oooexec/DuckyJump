@@ -9,15 +9,24 @@ Bird::Bird()
     sprite.setPosition(200-24,300-24);
     current_frame = 0;
     gravity_modifier = -0.0f;
-    max_gravity_modifier = +4.0f;
-    min_gravity_modifier = -min_gravity_modifier;
+    max_gravity_modifier = 4.0f;
+    min_gravity_modifier = -4.f;
     jump_strength = 2*max_gravity_modifier;
+    frame_duration  = sf::seconds(16.f/60.f);
+    time_since_frame_change = sf::Time::Zero;
+
 }
 
-void Bird::update(){
-    current_frame++;
-    current_frame = current_frame % 3*frame_duration;
-    sprite.setTextureRect(sf::IntRect(current_frame/frame_duration*24, 0, 24, 24));
+void Bird::update(sf::Time time_delta){
+    time_since_frame_change += time_delta;
+    if(time_since_frame_change >= frame_duration){
+        current_frame++;
+        time_since_frame_change = sf::Time::Zero;
+    }
+    if(current_frame >= frame_amount){
+        current_frame = 0;
+    }
+    sprite.setTextureRect(sf::IntRect(current_frame*24, 0, 24, 24));
     sprite.move(0,-gravity_modifier);
     if (sprite.getPosition().y < 0)
         sprite.move(0,-sprite.getPosition().y);
