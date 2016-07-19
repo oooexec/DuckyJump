@@ -7,6 +7,7 @@ Bird::Bird()
     sprite.setTextureRect(sf::IntRect(0, 0, 24, 24));
     sprite.scale(2.0f,2.0f);
     sprite.setPosition(200-24,300-24);
+    sprite.setOrigin(12.f,12.f);
     current_frame = 0;
     gravity_modifier = -0.0f;
     max_gravity_modifier = 4.0f;
@@ -39,7 +40,7 @@ void Bird::update(sf::Time time_delta){
 }
 
 void Bird::updateRotation(){
-    sprite.setRotation(3*gravity_modifier);
+    sprite.setRotation(-4*gravity_modifier);
 }
 
 sf::Sprite Bird::getCurrentFrame(){

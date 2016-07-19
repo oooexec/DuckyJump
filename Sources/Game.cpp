@@ -20,6 +20,7 @@ Game::Game(sf::RenderWindow * new_window_pointer)
 
 Game::~Game()
 {
+    bg_music.stop();
 }
 
 void Game::handleEvents(){    
