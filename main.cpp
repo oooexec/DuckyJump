@@ -1,5 +1,4 @@
 #include "config.h"
-#include "Arkona/Arkona.h"
 #include "Engine.h"
 
 int main()

@@ -1,21 +1,17 @@
 #include "Pipe.h"
 
-Pipe::Pipe(float hole_position, float window_width, float window_height)
+Pipe::Pipe(float hole_position, float start_x_pos, float window_width, float window_height)
 {
     texture.loadFromFile("./Graphics/pipe.png");
-    sprite_up.setTexture(texture);
+    texture_up.loadFromFile("./Graphics/pipe_up.png");
+    sprite_up.setTexture(texture_up);
     sprite_down.setTexture(texture);
-    // we have to rotate sprite 
-    sprite_up.rotate(180.f);
-    sprite_up.move(texture.getSize().x,texture.getSize().y);
-    sprite_up.setOrigin(0.f,0.f);
     
     sprite_down.move(0.f,texture.getSize().y + this->vertical_space_beetwen);
     
     //calculate position based on hole_position
-    sprite_up.move(250.f,hole_position - texture.getSize().y);
-    sprite_down.move(250.f,hole_position - texture.getSize().y);
-    
+    sprite_up.move(-start_x_pos,hole_position - texture.getSize().y);
+    sprite_down.move(-start_x_pos,hole_position - texture.getSize().y);
     
 }
 
@@ -43,6 +39,25 @@ sf::Sprite Pipe::getSpriteNr(unsigned int number_of_sprite){
         return sprite_up;
     else
         return sprite_down;
+}
+
+bool Pipe::hasPassPlayerAndView(){
+    // checking is position below 0 and any part of sprite isnt visible
+    if(sprite_down.getPosition().x + texture.getSize().x < 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+float Pipe::getX(){
+    return sprite_down.getPosition().x;
+}
+
+void Pipe::setX(float new_x_pos){
+    sprite_down.move(new_x_pos-sprite_down.getPosition().x,0.f);
+    sprite_up.move(new_x_pos-sprite_up.getPosition().x,0.f);
 }
 
 Pipe::~Pipe()

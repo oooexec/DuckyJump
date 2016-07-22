@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <iostream>
 
+
+
 Game::Game(sf::RenderWindow * new_window_pointer)
 {
     window_pointer = new_window_pointer;
@@ -13,9 +15,23 @@ Game::Game(sf::RenderWindow * new_window_pointer)
     
     frame_time  = sf::seconds(1.f/60.f);
     horizontal_speed = 1.0f;
+    space_beetwen_pipes = 200.f;
     
+    for(int i = 0;i<PIPES_AMOUNT;i++){
+        pipes[i].move((500.f+i*space_beetwen_pipes)*-1);
+    }
     
     this->run();
+}
+
+float Game::getLastPipePos(){
+    float last_pipe_pos = 0.f;
+    for(int i = 0;i<PIPES_AMOUNT;i++){
+        if(pipes[i].getX() > last_pipe_pos)
+            last_pipe_pos = pipes[i].getX();
+        
+    }
+    return last_pipe_pos;
 }
 
 Game::~Game()
@@ -74,15 +90,29 @@ void Game::run()
 void Game::update(sf::Time time_delta){
     if(!is_paused){
         floor.move(horizontal_speed);
-        test_pipe.move(horizontal_speed);
+        
+        // lets handle every pipe in game!
+        for(int i = 0;i<PIPES_AMOUNT;i++){
+            // moving every pipe
+            pipes[i].move(horizontal_speed);
+            // now if pipe pass the screen lets move it on end
+            if(pipes[i].hasPassPlayerAndView()){
+                pipes[i].setX(this->getLastPipePos() + space_beetwen_pipes);
+            }
+            std::cout << pipes[i].getX() << "\t";
+        }
+        std::cout << std::endl;
+        
         bird.update(time_delta);
     }
 }
 
 void Game::render(){
         ( * window_pointer ).clear(sf::Color(75,203,208));
-        ( * window_pointer ).draw(test_pipe.getSpriteNr(0));
-        ( * window_pointer ).draw(test_pipe.getSpriteNr(1));
+        for(int i = 0;i<PIPES_AMOUNT;i++){
+            ( * window_pointer ).draw(pipes[i].getSpriteNr(0));
+            ( * window_pointer ).draw(pipes[i].getSpriteNr(1));
+        }
         ( * window_pointer ).draw(floor.getSprite());
         ( * window_pointer ).draw(bird.getCurrentFrame());
         ( * window_pointer ).display();
